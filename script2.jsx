@@ -1,16 +1,15 @@
-// how to access methods defined in ToDoApp??
-//class Form extends React.Component {
-//     render () {
-//         console.log(this)
-//         return (
-//             <form>
-//                 <input onChange={this.props.changeHandler} value={this.props.task}/>
-//                 <button onClick={this.props.addItem}>Add Task</button>
-//             </form>
-//         )
-//     }
+class Form extends React.Component {
+    render () {
+        console.log(this)
+        return (
+            <form>
+                <input onChange={this.props.changeHandler} value={this.props.task}/>
+                <button onClick={this.props.addItem}>Add Task</button>
+            </form>
+        )
+    }
 
-// }
+}
 
 class ItemList extends React.Component {
     render () {
@@ -32,19 +31,19 @@ class ItemList extends React.Component {
 }
 
 
-// class ToDoItem extends React.Component {
-//     render() {
-//         //let index=this.props.index
-//         let item=this.props.item
+class ToDoItem extends React.Component {
+    render() {
+        //let index=this.props.index
+        let item=this.props.item
 
-//         return (
-//             <div>
-//                 <p>{item}</p>
-//             </div>
-//         )
+        return (
+            <div>
+                <li>{item}</li>
+            </div>
+        )
 
-//     }
-// }
+    }
+}
 
 
 class ToDoApp extends React.Component {
@@ -60,7 +59,8 @@ class ToDoApp extends React.Component {
         this.changeHandler = this.changeHandler.bind(this)
     }
 
-    addItem(){
+    addItem(event){
+        event.preventDefault();
         console.log('task input '+this.state.task);
         this.state.list.push(this.state.task);
 
@@ -79,15 +79,15 @@ class ToDoApp extends React.Component {
         console.log("todo app rendering");
         console.log(this.state.list)
         return (
+
             <div>
-                <input onChange={()=>{this.changeHandler()}} value={this.state.task}/>
-                <button onClick={()=>{this.addItem()}}>add item</button>
-            </div>
-            <div>
+
+                <Form changeHandler={this.changeHandler} addItem={this.addItem} task={this.state.taskList}>
+                </Form>
+
                 <ItemList list={this.state.list}>
                 </ItemList>
             </div>
-
         );
     }
 }
