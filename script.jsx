@@ -27,13 +27,10 @@ class List extends React.Component {
   render() {
       // render the list with a map() here
        console.log(this.state.list);
-       const taskList = this.state.list.map((item) => {
+       const taskList = this.state.list.map((item, index) => {
                 return (
-                    <ul>
-                        <li>
-                            {item}
-                        </li>
-                    </ul>);
+                        <li key={index}>{item}</li>
+                );
         });
         console.log(taskList);
 
